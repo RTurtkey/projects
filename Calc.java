@@ -37,14 +37,22 @@ public class Calc {
         return num1 / num2;
     }
 
+    private static double readValidDouble(java.util.Scanner scanner, String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            if (scanner.hasNextDouble()) {
+                return scanner.nextDouble();
+            }
+            System.out.println("Invalid input. Please enter a valid number.");
+            scanner.next();
+        }
+    }
+
     public static void main(String[] args) {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
 
-        System.out.print("Please enter the first number: \n");
-        double firstNumber = scanner.nextDouble();
-
-        System.out.print("Please enter the second number: \n");
-        double secondNumber = scanner.nextDouble();
+        double firstNumber = readValidDouble(scanner, "Please enter the first number: \n");
+        double secondNumber = readValidDouble(scanner, "Please enter the second number: \n");
 
         Calc calculator = new Calc();
         calculator.setNum1(firstNumber);
